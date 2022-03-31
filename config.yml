@@ -1,0 +1,88 @@
+# The config recipe.
+# https://rasa.com/docs/rasa/model-configuration/
+recipe: default.v1
+
+# Configuration for Rasa NLU.
+# https://rasa.com/docs/rasa/nlu/components/
+language: en
+pipeline:
+  - name: SpacyNLP
+    model: "en_core_web_md"
+    # model: "en_core_web_lg"
+  - name: SpacyTokenizer
+  - name: SpacyEntityExtractor
+  - name: SpacyFeaturizer
+    pooling: mean
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 100
+    constrain_similarities: true
+    # model_confidence: cosine
+    # model_confidence: linear_norm
+    model_confidence: softmax
+  - name: EntitySynonymMapper
+  - name: ResponseSelector
+    epochs: 64
+    constrain_similarities: true
+  - name: FallbackClassifier
+    threshold: 0.3
+    ambiguity_threshold: 0.1
+  - name: LanguageModelFeaturizer
+    # Name of the language model to use
+    model_name: "bert"
+    # Pre-Trained weights to be loaded
+    model_weights: "rasa/LaBSE"
+    # An optional path to a specific directory to download and cache the pre-trained model weights.
+    # The `default` cache_dir is the same as https://huggingface.co/transformers/serialization.html#cache-directory .
+    cache_dir: null
+
+
+# # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
+# # If you'd like to customize it, uncomment and adjust the pipeline.
+# # See https://rasa.com/docs/rasa/tuning-your-model for more information.
+#   - name: WhitespaceTokenizer
+#   - name: RegexFeaturizer
+#   - name: LexicalSyntacticFeaturizer
+#   - name: CountVectorsFeaturizer
+#   - name: CountVectorsFeaturizer
+#     analyzer: char_wb
+#     min_ngram: 1
+#     max_ngram: 4
+#   - name: DIETClassifier
+#     epochs: 100
+#   - name: EntitySynonymMapper
+#   - name: ResponseSelector
+#     epochs: 100
+#   - name: FallbackClassifier
+#     threshold: 0.3
+#     ambiguity_threshold: 0.1
+
+# Configuration for Rasa Core.
+# https://rasa.com/docs/rasa/core/policies/
+policies:
+  - name: MemoizationPolicy
+  - name: RulePolicy
+    # TODO use this to hand back to human
+    # core_fallback_threshold: 0.4
+    # core_fallback_action_name: "action_default_fallback"
+    # enable_fallback_prediction: False
+  # - name: FormPolicy
+  - name: UnexpecTEDIntentPolicy
+    max_history: 5
+    epochs: 64
+  - name: TEDPolicy
+    max_history: 5
+    epochs: 64
+    constrain_similarities: true
+
+# # No configuration for policies was provided. The following default policies were used to train your model.
+# # If you'd like to customize them, uncomment and adjust the policies.
+# # See https://rasa.com/docs/rasa/policies for more information.
+#   - name: MemoizationPolicy
+#   - name: TEDPolicy
+#     max_history: 5
+#     epochs: 100
+#   - name: RulePolicy
