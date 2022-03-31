@@ -24,6 +24,7 @@ Nothing happens. See debug message at end for output from Rasa.
 
 
 see also https://forum.rasa.com/t/problem-triggering-a-form-from-a-custom-action-in-rasa-3/52294 
+and https://discord.com/channels/624598019953917962/624598189630291999/959217584375472129 
 
 The way I'm trying to do so is with simulating a user inent using `UserUttered`:
 
