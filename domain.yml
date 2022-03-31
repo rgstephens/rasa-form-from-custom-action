@@ -42,6 +42,8 @@ responses:
   - text: "Here is the slot from the form : {my_slot} "
   utter_hello_form:
   - text: "first I have question"
+  utter_ask_my_slot:
+  - text: "[My form is asking for a slot]:"
 
 session_config:
   session_expiration_time: 60
