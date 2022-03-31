@@ -15,6 +15,9 @@ actions:
 - validate_my_form
 - action_hello_world
 
+entities:
+  - my_entity
+
 responses:
   utter_greet:
   - text: "Hey! How are you?"
@@ -49,7 +52,7 @@ slots:
     type: any
     mappings:
     - type: from_entity
-      entity: my_slot
+      entity: my_entity
   my_form_trigger:
     type: bool
     influence_conversation: true

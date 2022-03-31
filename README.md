@@ -3,7 +3,9 @@ I'm having trouble triggering a form from a custom action.
 The intent is `activate_my_form` and when called directly via an intent, works as expected.
 When triggering from a custom action it respons 6 to 9 times
 
-python -m spacy download en_core_web_md
+
+
+
 
 
 The way I'm trying to do so is with simulating a user inent using `UserUttered`:
@@ -99,7 +101,9 @@ The rules looks like so:
 
 ## installation
 
-Using pyenv  and installing requirements.
+Using pyenv  and installing requirements. After, python -m spacy download en_core_web_md
 
+rasa train
+rasa shell
 
 
