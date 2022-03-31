@@ -36,7 +36,8 @@ slot_events.append(utter_event)
 return slot_events
 ```
 
-I have also tried this in the
+I have also tried slot condition in another branch
+https://github.com/Hendler/rasa-form-from-custom-action/blob/slot-activation 
 
 ```
 slot_events.append(SlotSet(key="my_form_trigger", value=True))
