@@ -8,6 +8,12 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - activate_my_form
+  - custom_action_intent
+
+actions:
+- validate_my_form
+- action_hello_world
 
 responses:
   utter_greet:
@@ -29,6 +35,30 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
+  utter_my_form_slots_values:
+  - text: "Here is the slot from the form : {my_slot} "
+  utter_hello_form:
+  - text: "first I have question"
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+slots:
+  my_slot:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: my_slot
+  my_form_trigger:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: custom
+
+forms:
+  my_form:
+    ignored_intents:
+    - greet
+    required_slots:
+        - my_slot

@@ -1,6 +1,17 @@
 version: "3.1"
 
 nlu:
+- intent: custom_action_intent
+  examples: |
+    - Custom action
+    - Custom action intent
+    - custom inent action
+- intent: activate_my_form
+  examples: |
+    - Activate my form
+    - My form
+    - activate form
+    - trigger form
 - intent: greet
   examples: |
     - hey
