@@ -26,12 +26,12 @@ class ActionHelloWorld(Action):
 
         logging.info("action_hello_world running")
         slot_events = []
-        intent = {"intent": {"name": "activate_my_form", "confidence": 1.0}}
-        utter_event = UserUttered("activate my form", intent)
-        slot_events.append(utter_event)
+        # intent = {"intent": {"name": "activate_my_form", "confidence": 1.0}}
+        # utter_event = UserUttered("activate my form", intent)
+        # slot_events.append(utter_event)
         # slot_events.append(FollowupAction(name=""))
 
-        # slot_events.append(SlotSet(key="my_form_trigger", value=True))
+        slot_events.append(SlotSet(key="my_form_trigger", value=True))
         dispatcher.utter_message(text="Hello World!")
         return slot_events
 

@@ -3,14 +3,15 @@ version: "3.1"
 rules:
 
 - rule: Activate My form
+  condition:
+    - slot_was_set:
+      - my_form_trigger
   steps:
-  - intent: activate_my_form
+  # - intent: activate_my_form
   - action: utter_hello_form
   - action: my_form
   - active_loop: my_form
-  # condition:
-  #   - slot_was_set:
-  #     - my_form_trigger
+
 
 - rule: Finished with My Form
   condition:
