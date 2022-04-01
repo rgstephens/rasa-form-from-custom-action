@@ -9,7 +9,7 @@
 
 from typing import Any, Text, Dict, List
 
-from rasa_sdk.events import FollowupAction, SlotSet, UserUttered, EventType
+from rasa_sdk.events import FollowupAction, SlotSet, UserUttered, EventType, FollowupAction
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
@@ -27,8 +27,8 @@ class ActionHelloWorld(Action):
         logging.info("action_hello_world running")
         slot_events = []
         intent = {"intent": {"name": "activate_my_form", "confidence": 1.0}}
-        utter_event = UserUttered("activate my form", intent)
-        slot_events.append(utter_event)
+        #utter_event = UserUttered("activate my form", intent)
+        slot_events.append(FollowupAction("utter_hello_form"))
         # slot_events.append(FollowupAction(name=""))
 
         # slot_events.append(SlotSet(key="my_form_trigger", value=True))
